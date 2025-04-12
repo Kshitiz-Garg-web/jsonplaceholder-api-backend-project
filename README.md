@@ -1,8 +1,6 @@
 # 📌 JSONPlaceholder API Wrapper
 A backend API project built with Node.js and Express.
 
-
-
 A robust Node.js/Express API that fetches and serves user data from [JSONPlaceholder](https://jsonplaceholder.typicode.com/users), following MVC architecture with proper error handling and developer-friendly features.
 
 ---
@@ -57,7 +55,6 @@ jsonplaceholder-api/
 │   └── userRoutes.js
 ├── utils/               # Constants and helpers
 │   └── constants.js
-├── .env                 # Environment variables
 ├── app.js               # Server config
 ├── package.json         # Project metadata & deps
 └── README.md            # Project documentation
