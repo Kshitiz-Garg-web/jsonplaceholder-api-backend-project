@@ -1,12 +1,16 @@
 const express = require("express");
+const userRoutes = require('./routes/userRoutes');
+const { WELCOME_MSG } = require('./utils/constants');
 
 const app = express();
 
 app.get("/", (req, res) => {
   res.json({
-    message: Welcome_Msg,
+    message: WELCOME_MSG,
   });
 });
+
+app.use('/api/users', userRoutes);
 
 app.use((req, res) => {
   res.status(404).json("404 found - wrong req ");
