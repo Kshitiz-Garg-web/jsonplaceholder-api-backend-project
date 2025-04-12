@@ -1,11 +1,18 @@
 const axios = require("axios");
 const { API_URL, ERROR_MSGS } = require("../utils/constants");
-const { response } = require("express");
+
+let max_id = 0;
+
+const init_max_Id = async () => {
+  const response = await axios.get(API_URL);
+  max_id = response.data.length;
+};
 
 const get_All_Users = async (req, res, next) => {
   try {
     const response = await axios.get(API_URL);
-    console.log(response.data.length);
+    max_id = response.data.length;
+
     res.json({
       count: response.data.length,
       users: response.data,
@@ -21,7 +28,7 @@ const get_All_Users_By_Id = async (req, res, next) => {
 
     if (!user.data) {
       return res.status(404).json({
-        error: ERROR_MSGS.user_not_found,
+        error: `User not found. Please provide a valid user ID between 1 and ${max_id}`,
       });
     }
 
@@ -29,11 +36,11 @@ const get_All_Users_By_Id = async (req, res, next) => {
   } catch (error) {
     if (error.response?.status === 404) {
       return res.status(404).json({
-        error: ERROR_MSGS.user_not_found,
+        error: `User not found. Please provide a valid user ID between 1 and ${max_id}`,
       });
     }
     next(error);
   }
 };
 
-module.exports = { get_All_Users, get_All_Users_By_Id, response };
+module.exports = { get_All_Users, get_All_Users_By_Id };

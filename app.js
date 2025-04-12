@@ -1,6 +1,6 @@
 const express = require("express");
-const userRoutes = require('./routes/userRoutes');
-const { WELCOME_MSG } = require('./utils/constants');
+const userRoutes = require("./routes/userRoutes");
+const { WELCOME_MSG } = require("./utils/constants");
 
 const app = express();
 
@@ -10,7 +10,7 @@ app.get("/", (req, res) => {
   });
 });
 
-app.use('/api/users', userRoutes);
+app.use("/api/users", userRoutes);
 
 app.use((req, res) => {
   res.status(404).json("404 found - wrong req ");
@@ -22,6 +22,7 @@ app.use((err, req, res, next) => {
 });
 
 const PORT = 3000;
+
 app.listen(PORT, () => {
-  console.log(`server running 🚀 on http://localhost:${PORT}`);
+  console.log("🚀 Server running at http://localhost:3000");
 });

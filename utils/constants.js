@@ -5,7 +5,7 @@ module.exports = {
 
   ERROR_MSGS: {
     fetch_users: "Failed to fetch users list",
-    user_not_found:
-      `User not found. Please provide a valid user ID between 1 and`,
+    user_not_found: "User not found with given ID",
+    invalid_id: "Please provide a valid user ID",
   },
 };
