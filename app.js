@@ -2,6 +2,8 @@ const express = require("express");
 const userRoutes = require("./routes/userRoutes");
 const { WELCOME_MSG } = require("./utils/constants");
 const { init_max_Id } = require("./controllers/userController");
+require("dotenv").config();
+const portfinder = require("portfinder");
 
 const app = express();
 
@@ -40,9 +42,17 @@ app.use((req, res) => {
   });
 });
 
-const PORT = 3000;
-init_max_Id().then(() => {
-  app.listen(PORT, () => {
-    console.log("🚀 Server running at http://localhost:3000");
+portfinder.basePort = process.env.PORT || 3000;
+
+portfinder
+  .getPortPromise()
+  .then((port) =>
+    init_max_Id().then(() => {
+      app.listen(port, () => {
+        console.log(`🚀 Server running at http://localhost:${port}`);
+      });
+    })
+  )
+  .catch((err) => {
+    console.error("Error finding an available port: ", err);
   });
-});
