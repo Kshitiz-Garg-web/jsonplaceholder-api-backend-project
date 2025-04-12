@@ -43,4 +43,4 @@ const get_All_Users_By_Id = async (req, res, next) => {
   }
 };
 
-module.exports = { get_All_Users, get_All_Users_By_Id };
+module.exports = { get_All_Users, get_All_Users_By_Id, init_max_Id };

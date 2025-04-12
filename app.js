@@ -1,6 +1,7 @@
 const express = require("express");
 const userRoutes = require("./routes/userRoutes");
 const { WELCOME_MSG } = require("./utils/constants");
+const { init_max_Id } = require("./controllers/userController");
 
 const app = express();
 
@@ -22,7 +23,8 @@ app.use((err, req, res, next) => {
 });
 
 const PORT = 3000;
-
+init_max_Id().then(() => {
 app.listen(PORT, () => {
   console.log("🚀 Server running at http://localhost:3000");
+});
 });
